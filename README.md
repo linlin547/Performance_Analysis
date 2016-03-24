@@ -17,10 +17,11 @@
 
 2.通常问题
 -----
-  * ![feature](https://github.com/linlin547/Python_BDD_behave/blob/master/image/dir.png)
   * 一般性能测试构造数据时不要相同,因为可以避开缓存影响，需要测试缓存可以在处理。
   * LR中声明局部变量放在脚本开头
   * LR全局变量在globals.h中声明
+  * Ip欺骗时，主机应该单网卡,设置为静态IP,多网卡应禁用
+   * ![feature](https://github.com/linlin547/Python_BDD_behave/blob/master/image/dir.png)
 
 3.behave 示例
 -----
