@@ -17,36 +17,14 @@
 
 2.通常问题
 -----
-  * 一般性能测试构造数据时不要相同,因为可以避开缓存影响，需要测试缓存可以在处理。
+  * 一般性能测试构造数据时不要相同,因为可以避开缓存影响，需要测试缓存可以在处理
+  * 明确可用负载机，服务器软硬件信息
+  * 明确业务数据流走向，才可以更好的在出现问题时排查问题
   * LR中声明局部变量放在脚本开头
   * LR全局变量在globals.h中声明
+  * 网络瓶颈：内网100M，吞吐率不能超过100/8=12.5
   * Ip欺骗时，主机应该单网卡,设置为静态IP,多网卡应禁用
-   * ![feature](https://github.com/linlin547/Python_BDD_behave/blob/master/image/dir.png)
+   * ![feature](https://github.com/linlin547/Loadrunner_performance_analysis/blob/master/image/ip.png)
+  * Get请求：发送数据少，返回数据多；Post请求：发送数据多，返回数据少，大部分关联都是在post数据中
+  * 添加负载机时，要勾选Use the Perc...选项，才可以一个脚本在多个负载机上运行，<br>否则只能同个脚本按组跑，可设置不同负载机ip
 
-3.behave 示例
------
-  * 新建Behave_pro目录
-  * 新建/Behave_pro/features
-  * 新建/Behave_pro/features/steps
-  * 新建/Behave_pro/features/test.feature 场景描述
-    * ![feature](https://github.com/linlin547/Python_BDD_behave/blob/master/image/feature.png)
-  * 新建/Behave_pro/features/environment.py 前后依赖函数,类似setup初始化
-    * ![feature](https://github.com/linlin547/Python_BDD_behave/blob/master/image/env.png)
-  * 新建/Behave_pro/features/steps/test.py 测试步骤文件,对应test.feature中场景
-    * ![step](https://github.com/linlin547/Python_BDD_behave/blob/master/image/step.png)
-
-4.behave 执行
------
-  * 进入Behave_pro目录,输入 behave,运行结果
-    * ![result](https://github.com/linlin547/Python_BDD_behave/blob/master/image/result.png)
-
-  * 运行结果可以看出,执行了多个场景,当出现失败时,会展示红色字体,标记失败场景
-
-5.参考站点:
------
-  * T先生的博客:
-    * http://www.cnblogs.com/tman/p/4115795.html
-  * 卡农Lucas的博客
-    * http://www.cnblogs.com/devtesters/p/4368318.html
-  * 官方Demo
-    * http://jenisys.github.io/behave.example/
