@@ -20,6 +20,14 @@
  * ####编写已用4小时,分享个bootstrap编写的github主页(记录我的职业生涯中积累的点点滴滴～)：
    * [天空的Github主页](http://linlin547.github.io)
 
+导读目录：
+-----
+  * 性能测试划分
+  * 性能测试准备工作
+  * 性能测试常见问题
+  * Linux监控
+  * 数据库监控
+  * 服务器参数配置
 前端性能框架：
 -----
  * Selenium+YSlow+ShowSlow实现页面性能评估自动化，还是不错的工具。
@@ -189,6 +197,10 @@
     * Postgre
     * Mongo
     * Oracle
+
+  * 服务器相关参数优化
+    * Nginx
+    * Apache
 
 
 
