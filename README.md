@@ -18,7 +18,7 @@
         * 项目所用数据库的合理配置和优化方法 －－ 本文后面可供查询了解
  * 专职性能还好，如果说你想大包大揽，那么你不仅累，还要维护很多的知识，很痛苦，我还在挣扎中....
  * ####编写已用4小时,分享个bootstrap编写的github主页(记录我的职业生涯中积累的点点滴滴～)：
-   * ![天空](http://linlin547.github.io "天空的Github主页")
+   * [天空的Github主页](http://linlin547.github.io)
 
 前端性能框架：
 -----
@@ -185,6 +185,7 @@
           * Innodb_row_lock_time_avg：每次平均锁定的时间
           * Innodb_row_lock_time_max：最长一次锁定时间
           * Innodb_row_lock_waits：系统启动到现在、总共锁定次数
+    * 原来写文档也这么累，先歇歇，[3月31号]更新完后面内容～
     * Postgre
     * Mongo
     * Oracle
