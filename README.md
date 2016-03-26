@@ -1,7 +1,28 @@
-# 性能测试经验之谈
+# 我的性能测试经验分享
+闲扯：
+-----
+ * 性能测试门槛较高，选择前还是要谨慎，那么看下一名合格的性能测试工程师要求：
+   * 硬件大概信息,当硬件出现性能瓶颈后，提出可供替代硬件方案信息建议
+   * 系统框架的优劣势，以及框架下各模块的合理配置优化建议
+   * 上面这条好高大上，要完成这样任务的门槛也不低，我们来看下：
+     * 编程语言：Java，C，C#，C++，PHP，你不知道以后的工作他们哪个会出现在你的视线中.....
+        * Java，php占比较高，目前的主流互联网公司都在用Java，创业公司PHP会多一些
+        * C，C#，C++,如果你不是去做银行的外包项目或者游戏公司，这部分一般用不到滴。
+     * 服务端: Tomcat,Apache,IIS,Nginx,Mybatis,servlet，这些可不是要求你拼写单词哦～
+     * 数据端：Oracle，Mysql，Sqlserver，Postgresql，Mongodb，Redis，Mercache
+     * 好吧，这样的性能测试工程师至少我还没有见过，但我认为至少掌握以下硬性技能内容：
+        * 性能测试工具的选择，以及掌握编写脚本的语言
+        * 公司项目框架基本了解，数据的流转以及存储
+        * 项目所用服务配置以及优化方法－－参数辣么多记不住，其实网络上可以找到很多有用的信息，优化还是需要自身积累
+        * 服务端所用编程语言需要你本身具备该技能－－当然low点的办法是拉个后台开发人员陪你一起
+        * 项目所用数据库的合理配置和优化方法 －－ 本文后面可供查询了解
+ * 专职性能还好，如果说你想大包大揽，那么你不仅累，还要维护很多的知识，很痛苦，我还在挣扎中....
+ * ####编写已用4小时,分享个bootstrap编写的github主页(记录我的职业生涯中积累的点点滴滴～)：
+   * ![天空](http://linlin547.github.io "天空的Github主页")
+
 前端性能框架：
 -----
- ＊ Selenium+YSlow+ShowSlow实现页面性能评估自动化，还是不错的工具。
+ * Selenium+YSlow+ShowSlow实现页面性能评估自动化，还是不错的工具。
 
 1.性能测试划分
 -----
@@ -30,9 +51,15 @@
    * ![feature](https://github.com/linlin547/Loadrunner_performance_analysis/blob/master/image/ip.png)
   * Get请求：发送数据少，返回数据多；Post请求：发送数据多，返回数据少，大部分关联都是在post数据中
   * 添加负载机时，要勾选Use the Perc...选项，才可以一个脚本在多个负载机上运行，<br>否则只能同个脚本按组跑，可设置不同负载机ip<br>
-
-4.性能排查过程
------
+  * 当性能指标出现拐点时，排查思路：
+    * 负载机硬件资源
+    * 网络瓶颈 －－ 观察网络吞吐量计算
+    * 服务器硬件资源 －－ cpu，内存，磁盘
+    * 数据库服务器硬件资源 －－ cpu，内存，磁盘
+    * 服务器的各项参数配置，若分布式需检查配置是否生效，以及请求分配规则是否合理
+    * 数据库各项性能指标 －－ 下面有细节分析过程
+    * sql反推到代码块
+    * 第三方监控工具，监控运行代码；例如：jprofiler(java) xhprof(php)
 
 5.性能测试结果分析以及定位
 -----
@@ -105,8 +132,8 @@
         * Redis命中率：keyspace_hits／(keyspace_hits＋keyspace_misses)*100% (1.keyspace_hits:命中次数；2.keyspace_misses未命中次数)
     * Mysql
       * mysql两种引擎：
-        * MyISAM：表锁
-        * InnoDB：行锁
+        * MyISAM：表锁－－一般不会在使用表锁
+        * InnoDB：行锁－－常用
       * 表索引查看命令：desc 表名
       * 查看设置：show variables like...
       * 查看状态：show global status like...
@@ -121,7 +148,7 @@
       * mysql当前连接数： show global status like 'Max_used_connections';
         * 例如：最大连接数10个，每秒请求数据库连接数确是100个，可想不是很合理
       * key_buffer_size索引缓存命中率(内存中)
-        * key_buffer_size是对MyISAM表性能影响最大的一个参数
+        * key_buffer_size是对MyISAM引擎性能影响最大的一个参数
           * 查询配置：show variables like 'key_buffer_size';
           * 查询当前读状态：show global status like 'key_read%';
           * 查询当前写状态：show global status like 'key_write%';
@@ -129,16 +156,35 @@
             * 返回参数Key_reads：未从内存中找到，从磁盘读取的信息
             * 返回参数Key_write_requests：写索引请求总数
             * 返回参数Key_writes：写如磁盘的请求
-            * 命中率会为：
+            * 命中率为：
               * 读命中率：key_buffer_read_hits=(1-Key_reads/Key_read_requests)*100%
               * 写命中率：key_buffer_write_hits=(1-Key_writes/Key_write_requests)*100%
+      * InnodbBuffer缓存命中率(内存中)
+        * 缓存Innodb类型表的数据和索引的内存空间
+        * InnodbBuffer是对InnoDB引擎性能影响最大的一个参数
+        * 查询当前读状态：show status like 'Innodb_buffer_pool_read%';
+        * 查询当前写状态：show status like 'Innodb_buffer_pool_write%';
+          *命中率：
+            * 读命中率：innodb_buffer_read_hits=(1-Innodb_buffer_pool_reads/Innodb_buffer_pool_read_requests)*100%
+            * 写命中率：......
       * 查询线程池设置：show variables like 'thread%';
         * 线程池在短链接中功效更明显，频繁的生成和销毁连接
         * thread_cache_size:线程池中应该存放的连接线程数
           * 启动时，mysql不会全部创建，随着请求线程使用完，被释放存到线程池中，当线程池达到最大值，不在放入线程池
         * thread_stack：初始化每个线程分配内存大小
-        * 查询配置：show status like 'Connections';
-        * 查询状态：
+        * 查询配置：show variables like 'thread%';
+        * 系统被连接的次数：show status like 'Connections';
+          * 连接总数：Connections
+        * 查询状态：show status like '%thread%';
+          * Threads_created:创建过的线程，若数值较大，说明配置的thread_cache_size太小不合理，需要增加
+          * Threads_cached: 线程池中缓存的线程
+          * Thread Cache命中率(90%以上最优): Threads_Cache_Hit=(Connections-Threads_created)/Connections*100%
+      * 行锁
+        * 查询状态：show status like '%lock%';
+          * Innodb_row_lock_current_waits：当前等待锁的数量,阻塞数量
+          * Innodb_row_lock_time_avg：每次平均锁定的时间
+          * Innodb_row_lock_time_max：最长一次锁定时间
+          * Innodb_row_lock_waits：系统启动到现在、总共锁定次数
     * Postgre
     * Mongo
     * Oracle
