@@ -60,7 +60,10 @@
    * ![feature](https://github.com/linlin547/Loadrunner_performance_analysis/blob/master/image/ip.png)
   * Get请求：发送数据少，返回数据多；Post请求：发送数据多，返回数据少，大部分关联都是在post数据中
   * 添加负载机时，要勾选Use the Perc...选项，才可以一个脚本在多个负载机上运行，<br>否则只能同个脚本按组跑，可设置不同负载机ip<br>
-  * 当性能指标出现拐点时，排查思路：
+
+4.性能排查思路
+-----
+  * 当性能指标出现拐点时：
     * 负载机硬件资源
     * 网络瓶颈 －－ 观察网络吞吐量计算
     * 服务器硬件资源 －－ cpu，内存，磁盘
