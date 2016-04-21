@@ -197,7 +197,7 @@
           * Innodb_row_lock_time_avg：每次平均锁定的时间
           * Innodb_row_lock_time_max：最长一次锁定时间
           * Innodb_row_lock_waits：系统启动到现在、总共锁定次数
-    * 原来写文档也这么累，先歇歇，[3月31号]更新完后面内容～
+    * 原来写文档也这么累，先歇歇，[3月31号]更新完后面内容～－－临时变更，我先学习java，感觉java熟悉后，会给出更多的建议；
     * Postgre
     * Mongo
     * Oracle
