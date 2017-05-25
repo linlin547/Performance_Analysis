@@ -25,6 +25,7 @@
    #query:慢查询sql
    #calls：访问次数
    #total_time：运行时间，版本大于9.2的单位毫秒
+   #hit_percent:命中率
    这个结果会一直增加，如果不想这样，那么可以在每次监控时先清理一下，执行SQL：select pg_stat_statements_reset()
    
    
