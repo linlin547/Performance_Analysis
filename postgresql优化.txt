@@ -1,5 +1,9 @@
 # postgre数据库
 -----
+ * 查询当前数据库的连接数：
+     select * from pg_stat_activity;
+     结果集会显示出当前连接的数据库名，用户，IP地址，连接开始时间，查询的语句
+
  * pg_stat_statements统计了SQL的很多信息，但postgre并没有为我门创建，方便我们分析SQL的性能，需要修改postgresql.conf
      操作步骤如下
      1 修改配置文件，并且重启PostgreSQL方能生效：
@@ -21,7 +25,8 @@
    #calls：访问次数
    #total_time：运行时间，版本大于9.2的单位毫秒
    这个结果会一直增加，如果不想这样，那么可以在每次监控时先清理一下，执行SQL：select pg_stat_statements_reset()
-   
+   
+   
  * 查询表中存在的锁
 
    select a.locktype,a.database,a.pid,a.mode,a.relation,b.relname
