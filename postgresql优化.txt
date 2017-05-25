@@ -63,5 +63,25 @@
     gpcluster | DELETE FROM TABLE_NAME WHERE A = 1  | 2011-05-14 09:35:47.721173+08 |  17509 | 192.168.165.18
 
    通过以上可以发现，就是上面的锁导致该语句一直挂在那里,只需要和技术人员确认下这个SQL就好啦
+   
+   * 索引问题：
+    一个比较厉害的SQL，可以查询出表名，使用索引的百分比，读取该表的行数：
+      SELECT relname, 
+       100 * idx_scan / (seq_scan + idx_scan) percent_of_times_index_used, 
+       n_live_tup rows_in_table
+       FROM 
+         pg_stat_user_tables
+       WHERE 
+           seq_scan + idx_scan > 0 
+       ORDER BY 
+         n_live_tup DESC;
+   * 索引缓存命中率：
+     SELECT 
+       sum(idx_blks_read) as idx_read,
+       sum(idx_blks_hit)  as idx_hit,
+       (sum(idx_blks_hit) - sum(idx_blks_read)) / sum(idx_blks_hit) as ratio
+     FROM 
+       pg_statio_user_indexes;
+     一般来说，你应该要求这个达到99%，和你一般缓存命中率一样
 
 
