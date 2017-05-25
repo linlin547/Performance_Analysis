@@ -1,15 +1,20 @@
 # postgre数据库
-闲扯：
 -----
  * pg_stat_statements统计了SQL的很多信息，但postgre并没有为我门创建，方便我们分析SQL的性能，需要修改postgresql.conf
-    * 操作步骤如下
-    * 1 修改配置文件，并且重启PostgreSQL方能生效
-    * #------------------------------------------------------------------------------
-    * # PG_STAT_STATEMENTS OPTIONS
-    * #------------------------------------------------------------------------------
-    * shared_preload_libraries = 'pg_stat_statements'
-    * custom_variable_classes = 'pg_stat_statements'
-    * pg_stat_statements.max = 1000
-    * pg_stat_statements.track = all
-    * 2 创建pg_stat_statements扩展
-    * CREATE EXTENSION pg_stat_statements;从此之后，PostgreSQL就能记录SQL的统计信息。
+     操作步骤如下
+     1 修改配置文件，并且重启PostgreSQL方能生效：
+     #------------------------------------------------------------------------------
+     # PG_STAT_STATEMENTS OPTIONS
+     #------------------------------------------------------------------------------
+     shared_preload_libraries = 'pg_stat_statements'
+     custom_variable_classes = 'pg_stat_statements'
+     pg_stat_statements.max = 1000
+     pg_stat_statements.track = all
+     2 创建pg_stat_statements扩展：
+     CREATE EXTENSION pg_stat_statements;从此之后，PostgreSQL就能记录SQL的统计信息。
+ * 慢查询开始：
+   SELECT  query, calls, total_time, (total_time/calls) as average ,rows, 
+   100.0 * shared_blks_hit /nullif(shared_blks_hit + shared_blks_read, 0) AS hit_percent 
+   FROM  pg_stat_statements 
+   ORDER BY average DESC LIMIT 10;
+   这个结果会一直增加，如果不想这样，那么可以在每次监控时先清理一下，执行SQL：select pg_stat_statements_reset()
