@@ -1,6 +1,7 @@
 # postgre数据库
+闲扯：
 -----
-  * pg_stat_statements统计了SQL的很多信息，但postgre并没有为我门创建，方便我们分析SQL的性能，需要修改postgresql.conf
+ * pg_stat_statements统计了SQL的很多信息，但postgre并没有为我门创建，方便我们分析SQL的性能，需要修改postgresql.conf
     * 操作步骤如下
     * 1 修改配置文件，并且重启PostgreSQL方能生效
     * #------------------------------------------------------------------------------
