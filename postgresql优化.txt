@@ -1,3 +1,14 @@
-Postgre 
+# postgre数据库
 -----
-1.
+  * pg_stat_statements统计了SQL的很多信息，但postgre并没有为我门创建，方便我们分析SQL的性能，需要修改postgresql.conf
+    * 操作步骤如下
+    * 1 修改配置文件，并且重启PostgreSQL方能生效
+    * #------------------------------------------------------------------------------
+    * # PG_STAT_STATEMENTS OPTIONS
+    * #------------------------------------------------------------------------------
+    * shared_preload_libraries = 'pg_stat_statements'
+    * custom_variable_classes = 'pg_stat_statements'
+    * pg_stat_statements.max = 1000
+    * pg_stat_statements.track = all
+    * 2 创建pg_stat_statements扩展
+    * CREATE EXTENSION pg_stat_statements;从此之后，PostgreSQL就能记录SQL的统计信息。
