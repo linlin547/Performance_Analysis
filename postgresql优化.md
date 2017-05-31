@@ -1,4 +1,4 @@
-* postgre数据库
+* Postgresql数据库
 * 查询当前数据库的连接数：
   * select * from pg_stat_activity;
   * 结果集会显示出当前连接的数据库名，用户，IP地址，连接开始时间，查询的语句
