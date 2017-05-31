@@ -37,6 +37,7 @@
                    "writers" : 0 //当前全局写锁等待个数}<br>
       * 某个库的锁信息：db.serverStatus().locks
   * mongo自带的监控工具：进入mongoDB的bin目录执行：mongostat 
-    * 返回结果
+    * 查询结果：![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/mongod_stat.png)
+    * 详情解释：![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/mongodbstate.png)
       
     
