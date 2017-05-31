@@ -12,7 +12,7 @@
         * custom_variable_classes = 'pg_stat_statements'
         * pg_stat_statements.max = 1000
         * pg_stat_statements.track = all<br>
-    * 创建pg_stat_statements扩展：
+  * 创建pg_stat_statements扩展：
       * CREATE EXTENSION pg_stat_statements;从此之后，PostgreSQL就能记录SQL的统计信息。
       * 配置：https://github.com/linlin547/Loadrunner_performance_analysis/blob/master/image/statements.png
 * 慢查询：
