@@ -31,17 +31,15 @@
    join pg_class b on a.relation = b.oid
    where upper(b.relname) = 'TABLE_NAME';
    * 以上为查询某表上是否存在锁的SQL语句，查到后发现确实存在锁，如下：<br>
-     locktype | database |  pid  |      mode      | relation | relname
-    ----------+----------+-------+-----------------+----------+---------
-     relation |  439791 | 26752 | AccessShareLock |  2851428 |table_name
-     relation |  439791 | 26752 | ExclusiveLock  |  2851428 |table_name
-
+     locktype | database |  pid  |      mode      | relation | relname<br>
+    ----------+----------+-------+-----------------+----------+---------<br>
+     relation |  439791 | 26752 | AccessShareLock |  2851428 |table_name<br>
    * 根据上面查出来的pid去表pg_stat_activity查询一下该锁对应的SQL语句：
      * select usename,current_query ,query_start,procpid,client_addr from pg_stat_activity where procpid=17509;
    * 如下：<br>
-      usename  |  current_query   |   query_start   | procpid |  client_addr
-       -----------+--------------------------------------------------------------------------------------------
-      gpcluster | DELETE FROM TABLE_NAME WHERE A = 1  | 2011-05-14 09:35:47.721173+08 |  17509 | 192.168.165.18
+      usename  |  current_query   |   query_start   | procpid |  client_addr<br>
+       -----------+--------------------------------------------------------------------------------------------<br>
+      gpcluster | DELETE FROM TABLE_NAME WHERE A = 1  | 2011-05-14 09:35:47.721173+08 |  17509 | 192.168.165.18<br>
 
    * 通过以上可以发现，就是上面的锁导致该语句一直挂在那里,只需要和技术人员确认下这个SQL就好啦
    
