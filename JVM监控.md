@@ -36,23 +36,23 @@
         * ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/4.png)
     * 在HeapWalker中，找到泄漏的对象:
         * 1.HeapWarker 会分析内存中的所有对象，包括对象的引用、创建、大小和数量 
-        * ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/5.png)
+        * ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/5.jpg)
         * HeapWarker视图下方可以进行页面切换，通过切换到References页签，可以看到这个类的具体对象实例
         * 为了在这些内存对象中，找到泄漏的对象（应该被回收），可以在步骤1对象上点击右键，选择“Use Selected Instances”缩小对象范围
-        * ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/6.png)
+        * ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/6.jpg)
     * 通过引用分析该对象：
         * 在References引用页签中，可以看到该对象的的引用关系，可以切换incoming/outcoming，显示引用的类型：
             * incoming  表示显示这个对象被谁引用；
             * outcoming 表示显示这个对象引用的其他对象；
-        * ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/7.png)
+        * ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/7.jpg)
         * 选择“Show In Graph”将引用关系使用图形方式展现
-        * ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/8.png)
+        * ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/8.jpg)
         * 选中该对象，点击“Show Paths To GC Root”，会找到引用的根节点
-        * ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/9.png)
+        * ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/9.jpg)
         * 上图中这个HashMap Segment对象最终的引用是在ConcurrentHashMap和ReentranLock对象中
     * 通过创建分析该对象：
         * 如果以上步骤还不能定位内存泄露的地方，我们可以尝试使用Allocations页签，
         该页签显示对象是如何创建出来的，我们可以从创建方法开始检查，检查所有用到该对象的地方，直到找到泄漏位置
-        * ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/10.png)
+        * ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/10.jpg)
         
     
