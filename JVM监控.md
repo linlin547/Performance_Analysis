@@ -38,7 +38,7 @@
         * 1.HeapWarker 会分析内存中的所有对象，包括对象的引用、创建、大小和数量 
         ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/5.jpg)
         * HeapWarker视图下方可以进行页面切换，通过切换到References页签，可以看到这个类的具体对象实例
-        * 为了在这些内存对象中，找到泄漏的对象（应该被回收），可以在步骤1对象上点击右键，选择“Use Selected Instances”缩小对象范围
+        * 为了在这些内存对象中，找到泄漏的对象（应该被回收），可以在步骤1对象上点击右键，选择“Use Selected Instances”缩小对象范围</br>
         ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/6.jpg)
     * 通过引用分析该对象：
         * 在References引用页签中，可以看到该对象的的引用关系，可以切换incoming/outcoming，显示引用的类型：
