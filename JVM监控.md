@@ -1,5 +1,5 @@
 * JVM监控-jprofiler
-  * 线程死锁查看-网络知识，已应用
+  * 线程死锁定位-网络知识，已应用
     * Thread Views-Thread History查看全部线程中blocked的线程
         * 界面如下:
         * ![feature]()
@@ -9,3 +9,5 @@
     * 在Thread Dump中点击blocked状态线程查看
         * 界面如下:
         * ![feature]()
+  * 内存泄漏定位-网络知识，已应用
+    * 
