@@ -2,21 +2,21 @@
   * 线程死锁定位-网络知识，已应用
     * Thread Views-Thread History(显示一个与线程活动和线程状态在一起的活动时间表)查看全部线程中blocked的线程
         * 界面如下:
-        * ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/线程死锁图.png)
+        ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/线程死锁图.png)
     * Thread Views-Thread Monitor(包括所有的活动线程以及它们目前的活动状况) 查看实时线程状态，根据blocked状态编号线程,点击菜单Thread Dump
         * 界面如下:
-        * ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/实时线程状态图.png)
+        ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/实时线程状态图.png)
     * 在Thread Dump(显示所有线程的堆栈跟踪)中点击blocked状态线程对象查看
         * 界面如下:
-        * ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/线程对象情况.png)
+        ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/线程对象情况.png)
   * 内存泄漏定位-网络知识，已应用
     * 服务器运行过程中，发现内存只升不降；执行gc后，内存也不能被完全释放
     * 初始化检验环境：
         * 切换到“Live Memory-->All Objects”标签，可以看到当前tomcat中的对象情况
-        * ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/1.png)
+        ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/1.png)
         * 操作前，先F4,运行“Run GC”,使jvm进行内存回收清理无效的对象,为了便于比较内存的增长情况，</br>
         可以点击右键--->"Mark Current",来将当前内存使用情况作为参照；点击后会显示“Difference”列，该列会列出对象数量的变化和变化比率
-        * ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/2.png)
+        ![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/2.png)
     * 打开内存记录： 
         * 点击“Start Recordings”按钮，开始记录。执行这步的主要目的是为下面“Heap Walker”设置一个监控区间；
           如果不记录的话“Heap Walker”将分析jvm虚拟机的所有内存，即耗时又不能准确的发现内存泄漏的原因。
