@@ -1,4 +1,4 @@
-* Nginx优化相关配置 nginx.conf
+# Nginx优化相关配置 nginx.conf
   * 配置最大进程数: worker_processes 一般为CPU的核数
   * 每个进程允许的最多连接数: worker_connections
   * 每台nginx服务器的最大连接数 = worker_processes*worker_connections

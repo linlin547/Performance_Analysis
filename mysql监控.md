@@ -1,4 +1,4 @@
-* Mysql
+* Mysql监控
     * mysql两种引擎：
       * MyISAM：表锁－－一般不会在使用表锁
       * InnoDB：行锁－－常用
