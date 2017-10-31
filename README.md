@@ -60,6 +60,23 @@
    * ![feature](https://github.com/linlin547/Loadrunner_performance_analysis/blob/master/image/ip.png)
   * Get请求：发送数据少，返回数据多；Post请求：发送数据多，返回数据少，大部分关联都是在post数据中
   * 添加负载机时，要勾选Use the Perc...选项，才可以一个脚本在多个负载机上运行，<br>否则只能同个脚本按组跑，可设置不同负载机ip<br>
+  * hits per second：每秒点击次数，是指接收到服务器的状态码
+  <pre>
+    简单介绍了HTTP协议的概要，我们再来介绍HTTP协议处理状态和返回状态码的含义
+HTTP协议处理状态，当一个XMLHttpRequest初次创建时，这个属性的值从0开始，直到
+接收到完整的HTTP响应，这个值增加到4。
+
+这五个状态中每一个都有一个相关联的非正式的名称，下表列出了状态，名称和含义：
+
+状态  名称      描述
+0   Uninitializ 初始化状态。XMLHttpRequest对象已创建或已被abort()方法重置
+1   Open        send()方法未调用。请求还没有被发送
+2   Sent        send()方法已调用，HTTP请求以发送到web服务器。未接收到响应
+3   Receiving   所有响应头部都已经接收到，响应体开始接收但未完成’
+4   Loaded      HTTP响应已经完全接收
+
+ok，处理完毕的时候服务端，无论是成功还是失败都会返回一个状态码给客户端。
+  </pre>
 
 4.性能排查思路
 -----
