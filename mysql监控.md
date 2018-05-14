@@ -57,7 +57,7 @@
         *命中率：
           * 读命中率：innodb_buffer_read_hits=(1-Innodb_buffer_pool_reads/(Innodb_buffer_pool_read_requests+innodb_buffer_pool_read_ahead+innodb_buffer_pool_reads))*100%
 
-    * Query缓存命中率
+    * Query缓存命中率(MyISAM引擎)
     ```
         MYSQL的查询缓存用于缓存select查询结果，并在下次接收到同样的查询请求时，
         不再执行实际查询处理而直接从查询缓存中返回结果，
