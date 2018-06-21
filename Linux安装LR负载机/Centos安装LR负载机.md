@@ -15,12 +15,16 @@
 	```
 		* 4.1.输入n执行下一步
 		![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/n.png)
+		
 		* 4.2.输入a同意
 		![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/a.png)
+		
 		* 4.3.输入i安装
 		![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/i.png)
+		
 		* 4.4.输入f安装完成
 		![feature](https://github.com/linlin547/Performance_Analysis/blob/master/image/f.png)
+		
 	* 5.创建LR运行用户(root用户)
 	```
 		创建用户：useradd -g 0 -s /bin/bash lr_test
